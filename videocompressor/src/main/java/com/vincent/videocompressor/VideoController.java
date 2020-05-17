@@ -267,24 +267,39 @@ public void scheduleVideoConvert(String path, String dest) {
         int resultWidth;
         int resultHeight;
         int bitrate;
-        switch (quality) {
-            default:
-            case COMPRESS_QUALITY_HIGH:
-                resultWidth = originalWidth * 2 / 3;
-                resultHeight = originalHeight * 2 / 3;
-                bitrate = resultWidth * resultHeight * 30;
-                break;
-            case COMPRESS_QUALITY_MEDIUM:
-                resultWidth = originalWidth / 2;
-                resultHeight = originalHeight / 2;
-                bitrate = resultWidth * resultHeight * 10;
-                break;
-            case COMPRESS_QUALITY_LOW:
-                resultWidth = originalWidth / 2;
-                resultHeight = originalHeight / 2;
-                bitrate = (resultWidth/2) * (resultHeight/2) * 10;
-                break;
+
+        Log.d("ViratPath rotationValue",String.valueOf(rotationValue));
+        Log.d("ViratPath originalWidth",String.valueOf(originalWidth));
+        Log.d("ViratPath originalHeight",String.valueOf(originalHeight));
+
+        if(originalWidth > 1500 || originalHeight > 1500){
+            resultWidth = originalWidth / 2;
+            resultHeight = originalHeight / 2;
+        }else{
+            resultWidth = originalWidth;
+            resultHeight = originalHeight;
         }
+
+        bitrate = resultWidth * resultHeight * 2;
+
+//        switch (quality) {
+//            default:
+//            case COMPRESS_QUALITY_HIGH:
+//                resultWidth = originalWidth * 2 / 3;
+//                resultHeight = originalHeight * 2 / 3;
+//                bitrate = resultWidth * resultHeight * 30;
+//                break;
+//            case COMPRESS_QUALITY_MEDIUM:
+//                resultWidth = originalWidth / 2;
+//                resultHeight = originalHeight / 2;
+//                bitrate = resultWidth * resultHeight * 10;
+//                break;
+//            case COMPRESS_QUALITY_LOW:
+//                resultWidth = originalWidth / 2;
+//                resultHeight = originalHeight / 2;
+//                bitrate = (resultWidth/2) * (resultHeight/2) * 10;
+//                break;
+//        }
 
         int rotateRender = 0;
 
